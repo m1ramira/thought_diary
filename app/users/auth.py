@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from typing import Optional, Any
+from typing import Any, Optional
 
 from jose import jwt
 from passlib.context import CryptContext
@@ -21,7 +21,7 @@ def verify_password(plain_password, hashed_password) -> bool:
 def create_access_token(data: dict) -> str:
     to_encode = data.copy()
     expire_time = datetime.utcnow() + timedelta(hours=2)
-    to_encode.update({"exp_time": expire_time})
+    to_encode.update({"exp": expire_time})
     encoded_jwt = jwt.encode(
         to_encode,
         settings.SECRET_KEY,

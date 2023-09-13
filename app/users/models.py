@@ -10,7 +10,7 @@ class Users(Base):
     user_id = Column(Integer, primary_key=True, nullable=False)
     username = Column(String(50), nullable=False)
     hashed_password = Column(String, nullable=False)
-    full_name = Column(String, nullable=False)
+    full_name = Column(String)
     email = Column(String)
 
     def __str__(self):

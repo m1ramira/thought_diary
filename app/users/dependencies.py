@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional, Any
+from typing import Any, Optional
 
 from fastapi import Depends, Request
 from jose import JWTError, jwt
@@ -41,7 +41,7 @@ async def get_current_user(token: str = Depends(get_token)) -> Optional[Any]:
     except JWTError:
         raise IncorrectTokenFormatException
 
-    expire_time = payload.get("exp_time")
+    expire_time = payload.get("exp")
     if not expire_time or int(expire_time) < datetime.utcnow().timestamp():
         raise TokenExpiredException
 

@@ -43,7 +43,7 @@ async def login(response: Response, user_data: UserAuthSchema) -> str:
     if not user:
         raise IncorrectEmailOrPasswordException
 
-    access_token = create_access_token({"user_id": str(user.id)})
+    access_token = create_access_token({"user_id": str(user.user_id)})
     response.set_cookie("access_token", access_token, httponly=True)
 
     return access_token
