@@ -14,12 +14,15 @@ class Settings(BaseSettings):
     DB_PASS: str
     DB_NAME: str
 
+    SECRET_KEY: str
+    ALGORITHM: str
+
     @root_validator(pre=False, skip_on_failure=True)
     def get_db_url(cls, val: dict) -> dict:
         """Create DB_URL and add to all parameters.
         :type val: dict
         """
-        val['DB_URL'] = (f"postgresql+asyncpg://{val['DB_USER']}:{val['DB_PASS']}@"
+        val['DATABASE_URL'] = (f"postgresql+asyncpg://{val['DB_USER']}:{val['DB_PASS']}@"
                          f"{val['DB_HOST']}:{val['DB_PORT']}")
 
         return val
