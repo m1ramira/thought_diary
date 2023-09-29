@@ -1,0 +1,10 @@
+[
+  {
+    "username": "jane_dou",
+    "hashed_password": "hashed_password_1"
+  },
+  {
+    "username": "john_dou",
+    "hashed_password": "hashed_password_2"
+  }
+]
