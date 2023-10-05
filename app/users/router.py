@@ -2,14 +2,13 @@ from fastapi import APIRouter, Response
 
 from app.users.auth import auth_user, create_access_token, get_password_hash
 from app.users.dao import UsersDAO
-from app.users.exceptions import (IncorrectEmailOrPasswordException,
-                                  UserAlreadyExistsException)
+from app.users.exceptions import (
+    IncorrectEmailOrPasswordException,
+    UserAlreadyExistsException,
+)
 from app.users.schemas import UserAuthSchema
 
-router = APIRouter(
-    prefix="/auth",
-    tags=["Authentication and Users"]
-)
+router = APIRouter(prefix="/auth", tags=["Authentication and Users"])
 
 
 @router.post("/register")

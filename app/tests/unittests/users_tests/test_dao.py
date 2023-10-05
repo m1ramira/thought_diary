@@ -3,14 +3,7 @@ import pytest
 from app.users.dao import UsersDAO
 
 
-@pytest.mark.parametrize(
-    "user_id,is_present",
-    [
-        (1, True),
-        (2, True),
-        (3, False)
-    ]
-)
+@pytest.mark.parametrize("user_id,is_present", [(1, True), (2, True), (3, False)])
 async def test_find_by_id(user_id, is_present):
     user = await UsersDAO.find_by_id(user_id)
 
