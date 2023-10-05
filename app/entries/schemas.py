@@ -6,7 +6,6 @@ from app.emotions.schemas import EmotionsSchema
 
 
 class EntrySchema(BaseModel):
-    user_id: int
     date: datetime
     situation: str
     thoughts_at_moment: str

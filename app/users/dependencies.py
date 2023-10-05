@@ -6,9 +6,12 @@ from jose import JWTError, jwt
 
 from app.config import settings
 from app.users.dao import UsersDAO
-from app.users.exceptions import (IncorrectTokenFormatException,
-                                  TokenAbsentException, TokenExpiredException,
-                                  UserIsNotFoundException)
+from app.users.exceptions import (
+    IncorrectTokenFormatException,
+    TokenAbsentException,
+    TokenExpiredException,
+    UserIsNotFoundException,
+)
 
 
 def get_token(request: Request) -> str:

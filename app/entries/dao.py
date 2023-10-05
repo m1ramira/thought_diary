@@ -1,3 +1,5 @@
+from typing import Union
+
 from sqlalchemy import insert
 
 from app.dao.base import BaseDAO
@@ -6,24 +8,25 @@ from app.emotions.models import Emotions
 from app.entries.exceptions import IncorrectEntryException
 from app.entries.models import Entries
 from app.entries.schemas import EntrySchema
+from app.users.models import Users
 
 
 class EntryDAO(BaseDAO):
     model = Entries
 
     @classmethod
-    async def add(cls, entry: EntrySchema) -> None:
+    async def add(cls, entry: EntrySchema, user: Users) -> Union[int, None]:
         """
         Add data in entry and emotions in DB
         :param entry: entry and list of emotions
-        :return: None
+        :return: entry_id, if entry was saved, or None
         """
         async with (async_session_maker() as session):
             try:
                 query_entry = await session.execute(
                     insert(Entries)
                     .values(
-                        user_id=entry.user_id,
+                        user_id=user.user_id,
                         date=entry.date.replace(tzinfo=None),
                         situation=entry.situation,
                         thoughts_at_moment=entry.thoughts_at_moment,
@@ -49,3 +52,4 @@ class EntryDAO(BaseDAO):
                 raise IncorrectEntryException
             else:
                 await session.commit()
+                return entry_id

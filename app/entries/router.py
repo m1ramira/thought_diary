@@ -1,17 +1,21 @@
-import datetime
+from typing import Union
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from app.entries.dao import EntryDAO
 from app.entries.schemas import EntrySchema
+from app.users.dependencies import get_current_user
+from app.users.models import Users
 
 router = APIRouter(prefix="/entries", tags=["Entries"])
 
 
 @router.post("/")
-async def add_entry(entry: EntrySchema) -> None:
+async def add_entry(
+    entry: EntrySchema, user: Users = Depends(get_current_user)
+) -> Union[int, None]:
     """Save entry in DB"""
-    await EntryDAO.add(entry)
+    return await EntryDAO.add(entry, user)
 
 
 @router.get("/")

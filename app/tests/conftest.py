@@ -49,3 +49,14 @@ async def ac():
 async def session():
     async with async_session_maker() as session:
         yield session
+
+
+@pytest_asyncio.fixture(scope="function")
+async def authenticated_client(ac: AsyncClient):
+    data = {
+        "username": "auth_client",
+        "password": "hashed_password",
+    }
+    await ac.post("/auth/register", json=data)
+    await ac.post("/auth/login", json=data)
+    yield ac
