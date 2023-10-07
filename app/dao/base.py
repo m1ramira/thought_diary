@@ -40,6 +40,6 @@ class BaseDAO:
     @classmethod
     async def delete(cls, **kwargs: str) -> None:
         async with async_session_maker() as session:
-            query = insert(cls.model).values(**kwargs)
-            await session.delete(query)
+            query = delete(cls.model).filter_by(**kwargs)
+            await session.execute(query)
             await session.commit()
