@@ -1,3 +1,4 @@
+from fastapi import HTTPException, status
 from sqlalchemy import delete, insert, select
 
 from app.database import async_session_maker
@@ -40,6 +41,17 @@ class BaseDAO:
     @classmethod
     async def delete(cls, **kwargs: str) -> None:
         async with async_session_maker() as session:
-            query = delete(cls.model).filter_by(**kwargs)
-            await session.execute(query)
+            query = (
+                delete(cls.model)
+                .filter_by(**kwargs)
+                .returning(cls.model.__table__.c.id)
+            )
+            deleted_entry = await session.execute(query)
             await session.commit()
+
+            result = deleted_entry.scalar()
+            if not result:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail="Missing resource.",
+                )

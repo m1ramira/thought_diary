@@ -1,0 +1,32 @@
+[
+  {
+    "entry_id": 1,
+    "emotion": "IRRITATION",
+    "rate_at_moment": 5,
+    "rate_after": 3
+  },
+  {
+    "entry_id": 1,
+    "emotion": "JEALOUSY",
+    "rate_at_moment": 6,
+    "rate_after": 2
+  },
+  {
+    "entry_id": 2,
+    "emotion": "HATRED",
+    "rate_at_moment": 7,
+    "rate_after": 1
+  },
+  {
+    "entry_id": 3,
+    "emotion": "SORROW",
+    "rate_at_moment": 9,
+    "rate_after": 6
+  },
+  {
+    "entry_id": 3,
+    "emotion": "SHAME",
+    "rate_at_moment": 2,
+    "rate_after": 1
+  }
+]
