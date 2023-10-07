@@ -9,6 +9,7 @@ load_dotenv()
 
 class Settings(BaseSettings):
     """DB settings"""
+
     MODE: Literal["DEV", "TEST", "PROD"]
 
     DB_HOST: str
@@ -37,14 +38,20 @@ class Settings(BaseSettings):
         """Create DB_URL and add to all parameters.
         :type val: dict
         """
-        val['DATABASE_URL'] = (f"postgresql+asyncpg://{val['DB_USER']}:{val['DB_PASS']}@"
-                               f"{val['DB_HOST']}:{val['DB_PORT']}/{val['DB_NAME']}")
+        val["DATABASE_URL"] = (
+            f"postgresql+asyncpg://{val['DB_USER']}:{val['DB_PASS']}@"
+            f"{val['DB_HOST']}:{val['DB_PORT']}/{val['DB_NAME']}"
+        )
 
-        val['TEST_DATABASE_URL'] = (f"postgresql+asyncpg://{val['TEST_DB_USER']}:{val['TEST_DB_PASS']}@"
-                                    f"{val['TEST_DB_HOST']}:{val['TEST_DB_PORT']}/{val['TEST_DB_NAME']}")
+        val["TEST_DATABASE_URL"] = (
+            f"postgresql+asyncpg://{val['TEST_DB_USER']}:{val['TEST_DB_PASS']}@"
+            f"{val['TEST_DB_HOST']}:{val['TEST_DB_PORT']}/{val['TEST_DB_NAME']}"
+        )
 
-        val['PROD_DATABASE_URL'] = (f"postgresql+asyncpg://{val['PROD_DB_USER']}:{val['PROD_DB_PASS']}@"
-                                    f"{val['PROD_DB_HOST']}:{val['PROD_DB_PORT']}/{val['PROD_DB_NAME']}")
+        val["PROD_DATABASE_URL"] = (
+            f"postgresql+asyncpg://{val['PROD_DB_USER']}:{val['PROD_DB_PASS']}@"
+            f"{val['PROD_DB_HOST']}:{val['PROD_DB_PORT']}/{val['PROD_DB_NAME']}"
+        )
 
         return val
 

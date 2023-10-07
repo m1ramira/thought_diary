@@ -22,7 +22,7 @@ TokenAbsentException = HTTPException(
 
 IncorrectTokenFormatException = HTTPException(
     status_code=status.HTTP_401_UNAUTHORIZED,
-    detail="Incorrect token format.",
+    detail="Incorrect token format or user is not authorized.",
 )
 
 UserIsNotFoundException = HTTPException(

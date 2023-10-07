@@ -1,0 +1,23 @@
+[
+  {
+    "user_id": 1,
+    "situation": "situation_10",
+    "thoughts_at_moment": "thoughts_at_moment_1",
+    "reaction": "reaction_1",
+    "helped_thoughts": "helped_thoughts_1"
+  },
+  {
+    "user_id": 1,
+    "situation": "situation_2",
+    "thoughts_at_moment": "thoughts_at_moment_2",
+    "reaction": "reaction_2",
+    "helped_thoughts": "helped_thoughts_2"
+  },
+  {
+    "user_id": 2,
+    "situation": "situation_3",
+    "thoughts_at_moment": "thoughts_at_moment_3",
+    "reaction": "reaction_3",
+    "helped_thoughts": "helped_thoughts_3"
+  }
+]
