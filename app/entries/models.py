@@ -16,3 +16,4 @@ class Entries(Base):
     helped_thoughts = Column(String, nullable=False)
 
     user = relationship("Users", backref="entries", lazy=True)
+    emotions = relationship("Emotions", back_populates="entry", cascade="all,delete")

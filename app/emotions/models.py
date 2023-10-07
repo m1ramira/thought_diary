@@ -43,9 +43,9 @@ class Emotions(Base):
     )
 
     id = Column(Integer, primary_key=True, nullable=False)
-    entry_id = Column(ForeignKey("entries.id"), nullable=False)
+    entry_id = Column(ForeignKey("entries.id", ondelete="CASCADE"), nullable=False)
     emotion = Column(Enum(EmotionsEnum), nullable=False)
     rate_at_moment = Column(Integer, nullable=False)
     rate_after = Column(Integer, nullable=False)
 
-    entry = relationship("Entries", backref="emotions", lazy=True)
+    entry = relationship("Entries", back_populates="emotions")
